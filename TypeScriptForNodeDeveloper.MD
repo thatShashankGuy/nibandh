@@ -136,4 +136,39 @@ function throwError(errorMsg: string): never {
 
 While both `void` and `never` indicate the absence of a value, they're used differently. With `void`, a function doesn't return a value. With `never`, a function will not complete normally (e.g., it will throw an error).
 
+## Unions 
+
+Unions are way to combine multiple primitive type to form  a custom type .
+
+Consider a system  which emits a signal in either true and false  or 0 and 1. If you want to store the data in a variable but you are not sure what will it emit next so you handle you function.
+
+```typescript
+let a = emit() // true 
+a = emit() // this time it emits 1 and your typescript will throw erorr  because of the inference typescript have assinged a the type of boolean 
+```
+In this scenario you can create a `union` of boolean and Number type so that variable can store either  number or boolean 
+
+```typescript
+let a  : boolean | number
+a = true // valid 
+a = 1 // valid 
+```
+
+### Literal Types 
+
+But we can optimize this as well as we know that system will only emit 1s and 0s so no need to create an union with Number   you can create union with `Literal Types`. Literal Types as name suggest enforce storing only a particular value or a handful of values in case of union . Lets update our function 
+
+```typescript
+let a : boolean | 1 | 0
+a = 1 //valid 
+a = true // valid 
+a = false //valid 
+a = 0 // valid 
+a = 2 // invalid - typescript will throw errror 
+```
+you can use Literal types and Unions for custom checkers 
+
+```typescript
+let checker : undefined | null | "" | 0 | false
+```
 
