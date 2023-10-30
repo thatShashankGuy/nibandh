@@ -172,3 +172,35 @@ you can use Literal types and Unions for custom checkers
 let checker : undefined | null | "" | 0 | false
 ```
 
+### Narrowing 
+Consider a result variable  called function called  handleSyscall which takes an argument x  provided at runtime  , x can either have data of type string or it could be undefined . so we define res with type string | undefined . We want to return syscall response with message all lowercase. Lets write code forthat  
+
+```typescript 
+function handleSysCall(x : string | undefined){
+    return  x.toLowerCase() // Typescript throws a error - > 'x' is possibly 'undefined'.
+}
+
+let x = await syscall()
+handleSysCall(x)
+```
+Notice that we dont know the type of x at the run time we cannot run string operation as there is a good chance x will be undefined 
+To handle this in  typescript  we perform  `Narrowing`
+
+In simple terms, dynamic checks and predicates provide the information about values at runtime, So, Type narrowing is the process of providing this information during the compile time.
+
+TypeScript follows some possible paths of execution that the programs can take to analyze the most specific possible type of a value at a given position. It searches for some special checks known as Type Guards and assignments. The process of refining types to some more specific types is known as Narrowing.
+
+lets perform Narrowing by checking type of x at runtime to make sure that we do not encounter an error due to type mismatch
+
+
+```typescript 
+function handleSysCall(x : string | undefined){
+    if(x !== undefined) return  x.toLowerCase() //Valid  -> Type script checks type and value at runtime to return what is valid for both types . 
+    return 'syscall did not return value' 
+}
+
+let x = await syscall()
+handleSysCall(x)
+```
+
+
