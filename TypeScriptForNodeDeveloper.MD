@@ -173,7 +173,7 @@ let checker : undefined | null | "" | 0 | false
 ```
 
 ### Narrowing 
-Consider a result variable  called function called  handleSyscall which takes an argument x  provided at runtime  , x can either have data of type string or it could be undefined . so we define res with type string | undefined . We want to return syscall response with message all lowercase. Lets write code forthat  
+Consider a function called  handleSyscall which takes an argument x  provided at runtime  , x can either have data of type string or it could be undefined . so we define res with type string | undefined . We want to return syscall response with message all lowercase. Lets write code forthat  
 
 ```typescript 
 function handleSysCall(x : string | undefined){
