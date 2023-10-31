@@ -311,3 +311,74 @@ const employee: Employee = {
 // You can now add the 'age' property later without error
 employee["age"] = 33
 ```
+
+## Intefaces 
+
+A second way ( and traditional ) way to defined Objects - structure and types is using Interfaces . `Intefaces` are also used as contracts in OOP but we will discuss them in `OOP Section`
+
+```typescript
+Interface Employee{
+    Id : number,
+    name : string , 
+}
+
+employee : Employee = {
+	id  = 'UK010',
+	name : "Daniel
+}
+
+secondEmp = Employee()
+secondEmp.Id = `YT121'
+secondEmp.name = `Martin`
+```
+
+
+Almost all features of an interface are available in type, the key distinction is that a type cannot be re-opened to add new properties vs an interface which is always extendable
+
+### Extending a Type vs Extending an Interface 
+
+Extending is use  inherit property from another object . There is syntatical differences how you extend based on what Alias you are using 
+
+To extend a type we use `parent &` symbol .
+```typescript 
+ 
+type Employee = {
+    Id : number,
+    name : string , 
+    age : number , 
+    deptCode : number
+}
+
+type Personal =  Employee & { // using & symbol to extend 
+	address : string,
+	pincode : number 
+}
+
+personal = Personal()
+personal.address //valid property 
+personal.age // valid property // inherited from Employee
+```
+
+In Interfaces we use extends keyword
+```typescript 
+
+inteface Employee  {
+    Id : number,
+    name : string , 
+    age : number , 
+    deptCode : number
+}
+
+Interface Personal  extends Employee { // using extends keyword 
+	address : string,
+	pincode : number 
+}
+
+personal = Personal()
+personal.address //valid property 
+personal.age // valid property // inherited from Employee
+```
+
+
+For our intent and purposes types and interfaces can be used interchangabily. Personally I find Type alias to be used in Type defination when writing functional style codes and Interfaces when working in OOP style but thats and preference and no added benefits are provided .
+
