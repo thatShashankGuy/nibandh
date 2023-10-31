@@ -203,4 +203,111 @@ let x = await syscall()
 handleSysCall(x)
 ```
 
+## Types Alias 
+Consider this exercise where we have an employee object with some properties and method. Our method Dept func takes two properties and produces a function for employee.
 
+In JavaScript, it's straightforward to mistakenly update a property with a value of a different type:
+
+```javascript 
+const employee = {
+	id : 'CN1',
+	name : 'Jack',
+	deptCode : 112, 
+	deptFunc : function(){
+		console.log( this.id + (this.deptCode +  1000) )
+	}
+}
+employee.deptFunc() // Outputs: CN11112
+
+employee["deptCode"] = '112' // Accidentally changed deptCode to a string
+employee.deptFunc()  // Outputs: CN11121000 (incorrect employee function )
+```
+
+When the same code is translated to TypeScript:
+
+```typescript
+const employee = {
+	id : 'CN1',
+	name : 'Jack',
+	deptCode : 112, 
+	deptFunc : function(){
+		console.log( this.id + (this.deptCode +  1000) )
+	}
+}
+employee.deptFunc() // Outputs: CN11112
+
+employee["deptCode"] = '112' // Error in TypeScript: Type 'string' is not assignable to type 'number'.
+```
+
+TypeScript `infers` the types of properties and methods within the object and enforces those inferred types during subsequent assignments. This is where TypeScript's `Type Alias` comes into play. You can think of a Type Alias as creating your own custom type or data structure:
+
+```typescript
+type Employee = {
+  id: string,
+  name: string,
+  deptCode: number,
+  deptFunc: Function
+}
+
+const employee: Employee = {
+	id : 'CN1',
+	name : 'Jack',
+	deptCode : 112, 
+	deptFunc : function(){
+		console.log( this.id + (this.deptCode +  1000) )
+	}
+}
+employee.deptFunc() // Outputs: CN11112
+```
+
+With a Type Alias, TypeScript not only enforces the type of each property but also the overall structure of the object. This means you cannot randomly add new properties without first updating the Type Alias:
+
+```typescript
+employee["age"] = 17 // Error in TypeScript: Element implicitly has an 'any' type because expression of type '"age"' can't be used to index type 'Employee'. Property 'age' does not exist on type 'Employee'. 
+```
+
+To add a new property, we need to update the Type Alias:
+
+```typescript
+type Employee = {
+  id: string,
+  name: string,
+  deptCode: number,
+  age: number, // added the 'age' property with its type
+  deptFunc: Function
+}
+
+const employee: Employee = {
+	id : 'CN1',
+	name : 'Jack',
+	deptCode : 112, 
+	age : 33,
+	deptFunc : function(){
+		console.log( this.id + (this.deptCode +  1000) )
+	}
+}
+```
+
+But what if certain fields like our age field  aren't always required to be updated or if they need to be added later? We can make them optional by adding a `?` next to the property name:
+
+```typescript
+type Employee = {
+  id: string,
+  name: string,
+  deptCode: number,
+  age?: number, // made 'age' optional by appending '?'
+  deptFunc: Function
+}
+
+const employee: Employee = {
+	id : 'CN1',					
+	name : 'Jack',
+	deptCode : 112, 
+	deptFunc : function(){
+		console.log( this.id + (this.deptCode +  1000) )
+	}
+}
+
+// You can now add the 'age' property later without error
+employee["age"] = 33
+```
