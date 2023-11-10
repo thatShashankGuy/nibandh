@@ -21,12 +21,13 @@ contributions from anyone who wishes to add value to this project is welcomed an
 
 ### How to Contribute
 
-1. **Fork the Repository:** Start by forking the repository to your GitHub account.
-2. **Create a Branch:** Create a branch in your forked repository for your changes.
-3. **Make Your Changes:** Add, update, or improve the guides as you see fit.
-4. **Submit a Pull Request:** Once you're done, submit a pull request to the main repository.
+- We have decided to not maintain a codebase on this project. 
+- Instead we will like you to use **_Wiki_** section of this repository.
+- For an existing topic add the header with `##` and write in markdown
+-  For a new topic add a new page and start writing. 
 
-_Note: Please ensure your contributions are well-written and follow the existing format for consistency._
+
+_Note: _The process is very new and evolving , if we change the current process, contributors will be informed prior going live._ Please ensure your contributions are well-written and follow the existing format for consistency._
 
 ## Feedback
 
