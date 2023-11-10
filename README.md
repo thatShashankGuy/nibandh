@@ -39,6 +39,3 @@ Happy Learning, and Happy Sharing!
 
 _thatShashankGuy_ 🚀
 
----
-
-Feel free to customize this template to suit the specific needs and style of your project!
