@@ -23,13 +23,14 @@ contributions from anyone who wishes to add value to this project is welcomed an
 
 ### How to Contribute
 
-2. **Create a Branch:** Create a branch and name them title of your write up.
+1. **Create a Branch:** Create a branch and name them title of your write up.
 
-3. **Make Your Changes:** Add a new md file following writing structure of other in writeups. If your topic is a sub-topic of exisiting writeup add your changes into the file.Update the Index.md if new file is added .
+2. **Make Your Changes:** Add a new md file following writing structure of other in writeups. If your topic is a sub-topic of exisiting writeup add your changes into the file.Update the Index.md if new file is added .
 
-4. **Submit a Pull Request:** Once you're done, submit a pull request to the main repository.
+3. **Submit a Pull Request:** Once you're done, submit a pull request to the main repository.
 
-_Note: Please ensure your contributions are well-written and follow the existing format for consistency._
+
+_Note: _The process is very new and evolving , if we change the current process, contributors will be informed prior going live._ Please ensure your contributions are well-written and follow the existing format for consistency._
 
 ## Feedback
 
