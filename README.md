@@ -1,6 +1,6 @@
 # The The _InSights Project Project
 
-![Alt text](image.png)
+![Alt text](/assets/logo.png)
 
 Welcome to **The _InSights Project**, a comprehensive and evolving repository where we document concise, practical reference materials encountered during our tech learning and usage journey. This project is more than just a collection of notes; it's a growing guidebook, shaped by experiences and insights, tailored to assist both beginners and experienced tech enthusiasts alike.
 
