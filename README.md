@@ -1,6 +1,6 @@
 ![Alt text](/assets/logo.png)
 
-Welcome to **The _InSights Project**, a comprehensive and evolving repository where we document concise, practical reference materials encountered during our tech learning and usage journey. This project is more than just a collection of notes; it's a growing guidebook, shaped by experiences and insights, tailored to assist both beginners and experienced tech enthusiasts alike.
+Welcome to **The _InSights Project**, a comprehensive and evolving repository where we document concise, practical reference materials encountered during our tech learning and usage journey. This project is more than just a collection of notes; it's a growing guidebook, shaped by experiences and insights, tailored to assist both beginners and experienced tech enthusiasts alike.The projecti s currently hosted on [github pages](https://github.com/thatShashankGuy/_InSights) .
 
 ## Table of Content
 
@@ -27,7 +27,7 @@ contributions from anyone who wishes to add value to this project is welcomed an
 
 ### How to Contribute
 
-1. **Create a Branch:** Create a branch and name them title of your write up.
+1. **Create a Branch:**  In [Github Repo](https://github.com/thatShashankGuy/_InSights) Create a branch and name them title of your write up.
 
 2. **Make Your Changes:** Add a new md file following writing structure of other in writeups. If your topic is a sub-topic of exisiting writeup add your changes into the file.Update the Index.md if new file is added .
 
@@ -44,6 +44,8 @@ Your feedback is crucial in shaping **The _InSights Project** into a valuable re
 ---
 
 Happy Learning, and Happy Sharing!
+
+
 
 _thatShashankGuy_ 🚀
 
