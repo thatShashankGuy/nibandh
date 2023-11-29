@@ -142,4 +142,94 @@ operation1(5, (result1) => {
 
 
 ```
-This could further be complicated if we define callback in arguments 
+This could further be complicated if we define callback in arguments .
+
+### Callback Design Patterns 
+
+- **Sequential Callback Execution**
+Task in callback will execute one after other. This is especially useful if output of first callback is input of next. Straightforward for small tasks or when operations need to be performed in a specific order.But can end up in callback hell due to nature of specific order. 
+
+Consider a program where you read from a file asyncronously and find address of second file and start reading this. In this case you must only start reading second file after first operation yeilds result successfully. 
+
+``` javascript
+const fs = require('fs');
+
+// Reading the first file
+fs.readFile('/path/to/first/file', 'utf8', (err, data1) => {
+    if (err) {
+        console.error("Error reading the first file:", err);
+        return;
+    }
+    console.log('First file read:', data1);
+
+    const secondFilePath = data1
+
+    // Reading the second file using the path from the first file
+    fs.readFile(secondFilePath, 'utf8', (err, data2) => {
+        if (err) {
+            console.error("Error reading the second file:", err);
+            return;
+        }
+        console.log('Second file read:', data2);
+
+        // Further processing can be done here with data2
+    });
+});
+
+```
+
+- **Parallel Callback Execution**
+If your next operation do not depend on output of last operation , to avoid deep nesting and callback hell you can execute callbacks parallely. 
+
+```javascript 
+const fs = require('fs');
+
+// Function to read a file and invoke a callback
+function readFile(path, callback) {
+    fs.readFile(path, 'utf8', (err, data) => {
+        if (err) {
+            callback(err, null);
+            return;
+        }
+        callback(null, data);
+    });
+}
+
+// Reading multiple files in parallel
+let count = 0;
+const totalFiles = 2;
+let data1, data2;
+
+readFile('/path/to/first/file', (err, data) => {
+    if (err) throw err;
+    data1 = data;
+    count++;
+    if (count === totalFiles) {
+        console.log('All files read');
+        // Further processing with data1 and data2
+    }
+});
+
+readFile('/path/to/second/file', (err, data) => {
+    if (err) throw err;
+    data2 = data;
+    count++;
+    if (count === totalFiles) {
+        console.log('All files read');
+        // Further processing
+    }
+});
+```
+
+While it is better to use parallel handling for more readable code and better performance, but it comes with its own challenges. Parallel execution is resource intensive and can consume more memory than sequential execution at a time. 
+
+Another issue of parallel execution is if not limited, launching an excessive number of parallel operations that could overwhelm the system and cause memory leaks . 
+
+Based on operation type and resulting executions, one of either can be choose. Though Node have evovled and callbacks having serious disadvantages have moved to better handling of async calls using `promises`. let discuss them. 
+
+### Promises 
+
+coming soon....
+
+
+
