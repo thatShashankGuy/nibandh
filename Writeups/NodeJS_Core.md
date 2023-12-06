@@ -229,7 +229,100 @@ Based on operation type and resulting executions, one of either can be choose. T
 
 ### Promises 
 
-coming soon....
+Callbacks is a messy way to handle async code . To deal with it , ES6 in general standarized promises async desgin pattern also called promise/A+ at that time and it is supported natively in Node since v4. Below is a messy callback hell and its promise counterpart. 
 
+```javascript
 
+//Messy callback
+
+function fetchData(callback) {
+    // Simulate an asynchronous operation like a database call
+    setTimeout(() => {
+        callback(null, 'Data fetched');
+    }, 1000);
+}
+
+function processData(data, callback) {
+    // Simulate data processing
+    setTimeout(() => {
+        callback(null, data + ' and processed');
+    }, 1000);
+}
+
+// Nested callbacks (callback hell)
+fetchData((error, data) => {
+    if (error) {
+        console.error('Error fetching data:', error);
+    } else {
+        processData(data, (error, processedData) => {
+            if (error) {
+                console.error('Error processing data:', error);
+            } else {
+                console.log('Processed Data:', processedData);
+            }
+        });
+    }
+});
+
+//Cleaner Promise
+
+fetchData()
+    .then(processData)
+    .then((processedData) => {
+        console.log('Processed Data:', processedData);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+```
+
+### Promisification 
+Promises are built internally on idea of callbacks , and as result a callback can be converted to promise . This is called `Promisification of callback`
+
+Lets promisify our fetchdata and process data callback to make what we saw as cleaner promise chaining. 
+
+```javascript
+function fetchData() {
+    // Return a new Promise
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('Data fetched');
+        }, 1000);
+    });
+}
+
+function processData(data) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(data + ' and processed');
+        }, 1000);
+    });
+}
+
+// using both promises one after other is called promise chaining
+fetchData()
+    .then(processData)
+    .then((processedData) => {
+        console.log('Processed Data:', processedData);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+```
+### Fundamentals of Promise 
+- In above code you create function and return a `new Promise` wrapping around the callback.
+- A new Promise take two arguments `resolve` and `reject`. we `resolve`  or `fulfill`  a promise when program execution was successful and `reject` a promise if error occured. 
+- This function can be uses as promise now with a `thenable` using .`then` execute the code after promise is `fulfilled ` or `rejected` .   
+- The `catch` is special `then` which can be used instead of then when promise is not `resolved` but `rejected`  and returns error arg. It is similar in concept to `error first callbacks`
+
+### The Promise API 
+The Promise api exposes several method to handle execution of several async operations either sequentially or parallely. I have mentioned the important ones below. 
+
+- `Promise.resolve` is  used to create a Promise that is resolved with a given value. If the value is a Promise, it returns the Promise itself.
+- `Promise.reject` is used to create a Promise that is rejected with a given reason.
+- `Promise.all` is used when you have multiple asynchronous operations that you wish to run concurrently, and you need to wait for all of them to complete. It takes an array of Promises as an input.If all the Promises resolve, `Promise.all` resolves with an array of the results of the input Promises, in the same order. If any of the Promises are rejected, Promise.all immediately rejects with the reason of the first Promise that rejects.
+- `Promise.allSettled` is similar to Promise.all except it waits for all promises ( both resloved and rejected). It also return array the results with resolved , rejected alike instead of rejecting on first reject.
+- `Promise.race` is used when you have multiple asynchronous operations and you want to take action as soon as the first one resolves or rejects. It resolves or rejects as soon as the first Promise in the input array resolves or rejects, with the value or reason from that Promise.
+- `Promise.any` is somewhat the opposite of `Promise.all `regarding how it handles rejections.t resolves as soon as any of the input Promises resolve, with the value of the first resolved Promise. If all input Promises reject, `Promise.any` rejects with an `AggregateError`.
 
