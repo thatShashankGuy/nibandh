@@ -1,10 +1,9 @@
 Welcome to **nibandh**, a comprehensive and evolving repository where we document concise, practical reference materials encountered during our tech learning and usage journey. This project is more than just a collection of notes; it's a growing guidebook, shaped by experiences and insights, tailored to assist both beginners and experienced tech enthusiasts alike.The projecti s currently hosted on [github pages](https://github.com/thatShashankGuy/_InSights) .
 
 ## Table of Content
-
-- **[GO Programming Starter](/Writeups/Go_Programming_Stater.md)**
-- **[NodeJS Core](/Writeups/NodeJS_Core.md)**
-- **[The Typescript Guide](/Writeups/The_Typescript_Guide.md.md)**
+- **[Asyncronous Programming In NodeJS](/Writeups/AsyncronousProgrammingInNodeJS.md)**
+- **[Go Programming Fundamental Concepts](/Writeups/GoProgrammingFundamentalConcepts.md)**
+- **[The Typescript Guide](/Writeups/TypescriptGuide.md)**
 
 ## About the Project
 
